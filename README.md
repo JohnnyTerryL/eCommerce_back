@@ -2,9 +2,9 @@
 
 ## Requerimientos
 
-- Stack LEMP: Ubuntu 20.04, NGINX 1.17.3, MySQL 5.7.23, PHP 8.0.22
-- Frameworks: Laravel 8.12
-- Herramientas: Composer 1.10.19, Node 15.9.0, NPM 7.5.3, Tailwind
+- Stack LEMP: PHP 8.0.22.
+- Frameworks: Laravel Framework 9.31.0.
+- Herramientas: Composer 2.4.2.
 
 ## Configuración e Instalación
 Para comenzar es importante tener un ambiente de desarrollo local bien organizado, si estas usando MAC puedes usar [laravel valet](https://laravel.com/docs/8.x/valet), en caso de usar Ubuntu o Linux puedes ayudarte de docker o una configuraión manual LEMP.
