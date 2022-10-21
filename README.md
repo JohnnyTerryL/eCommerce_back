@@ -1,66 +1,51 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# eCommerce_back
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Requerimientos
 
-## About Laravel
+- Stack LEMP: PHP 8.0.22.
+- Frameworks: Laravel Framework 9.31.0.
+- Herramientas: Composer 2.4.2.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Configuración e Instalación
+Para comenzar es importante tener un ambiente de desarrollo local bien organizado, si estas usando MAC puedes usar [laravel valet](https://laravel.com/docs/8.x/valet), en caso de usar Ubuntu o Linux puedes ayudarte de docker o una configuraión manual LEMP.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+En el caso de Windows se puede utilizar Homestead, XAMPP o WAMPP.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Clonar el repositorio con el siguiente comando.
+```
+git clone https://github.com/DanielEscobar21/eCommerce_back.git
+```
 
-## Learning Laravel
+Después de clonar el repositorio, dentro del directorio se debe de configurar el archivo .env tomando como referencia el ejemplo y revisando a detalle que cada variable esté bien configurada.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```
+mv .env.example .env
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Instalación de Dependencias
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Descargar [composer](https://getcomposer.org/) y [PHP](https://www.php.net/downloads).
+- Instalar composer con la versión de php especificada.
+- Dentro de la carpeta del proyecto instalar las dependencias de Composer.
+```
+composer install --ignore-platform-req=ext-fileinfo
+```
 
-## Laravel Sponsors
+## Instalación de migraciones
+Para correr agregar las tablas a la base de datos ejecutar el siguiente comando.
+```
+php artisan migrate
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Notas importantes de desarrollo
 
-### Premium Partners
+- No realizar commits directamente en las branches de develop y master ya que estas serán administradas por el RM (Release Manager).
+- Se debe usar el modelo de branching de [git-flow](http://danielkummer.github.io/git-flow-cheatsheet/).
+- Cada vez que se trabaje en algo se debe crear una branch a partir de develop y posteriormente al finalizar los cambios en vez de hacer un ```git flow feature finish nombre``` se subirá la branch al repo y de esa branch enviar el Pull Request (PR) a develop para que a su momento y después de que alguien más revise el código haga el merge a develop.
+- El nombre de los commits debe ser en inglés empezando con letra mayúscula, sin punto final y explicando bien de lo que se trata el commit.
+- Las feature branchs deben ser creadas usando [git-flow](http://danielkummer.github.io/git-flow-cheatsheet/) ejemplo: ```git flow feature start profile-api```
+- El nombre de las feature branch debe ser en inglés y al estilo [kebab-case](http://wiki.c2.com/?KebabCase) ```english-name-using-kebab-case```.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Autor
+* **Daniel Escobar** - *Tech Lead* - [DanielEscobar21](https://github.com/DanielEscobar21)
