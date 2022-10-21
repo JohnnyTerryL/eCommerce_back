@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,17 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return ProductResource::collection(Product::all());
     }
 
     /**
@@ -35,7 +27,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return (new ProductResource(Product::create($request->all())))->additional(["message"=>"Producto creado con éxito."]);
     }
 
     /**
@@ -46,18 +38,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
+        return new ProductResource($product);
     }
 
     /**
@@ -69,7 +50,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return (new ProductResource($product))->additional(["message"=>"Producto actualizado con éxito."]);
     }
 
     /**
@@ -80,6 +62,17 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return (new ProductResource($product))->additional(["message"=>"Producto eliminado con éxito."]);
+    }
+
+    public function listOnStockProducts(){
+        $products = Product::where("stock", ">", 0)->get();
+        return ProductResource::collection($products);
+    }
+
+    public function productByCategory($category_id){
+        $products = Product::where("category_id" , $category_id)->get();
+        return ProductResource::collection($products);
     }
 }

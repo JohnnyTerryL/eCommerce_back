@@ -8,10 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = [
-        'name',
-        'price',
-        'background_image',
-        'order',
-        'status'
+        'name'
     ];
 }
