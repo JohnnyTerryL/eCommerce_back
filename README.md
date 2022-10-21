@@ -16,14 +16,10 @@ Clonar el repositorio con el siguiente comando.
 git clone https://github.com/DanielEscobar21/eCommerce_back.git
 ```
 
-Después de clonar el repositorio, dentro del directorio Core se debe de configurar el archivo .env tomando como referencia el ejemplo y revisando a detalle que cada variable esté bien configurada.
+Después de clonar el repositorio, dentro del directorio se debe de configurar el archivo .env tomando como referencia el ejemplo y revisando a detalle que cada variable esté bien configurada.
 
 ```
 mv .env.example .env
-```
-
-```
-nano .env
 ```
 
 ### Instalación de Dependencias
@@ -32,18 +28,13 @@ nano .env
 - Instalar composer con la versión de php especificada.
 - Dentro de la carpeta del proyecto instalar las dependencias de Composer.
 ```
-composer install --no-interaction --prefer-dist
+composer install --ignore-platform-req=ext-fileinfo
 ```
 
 ## Instalación de migraciones
 Para correr agregar las tablas a la base de datos ejecutar el siguiente comando.
 ```
-php artisan migrate --force
-```
-
-Para regenerar la base de datos con datos de prueba
-```
-php artisan migrate:fresh --seed
+php artisan migrate
 ```
 
 ## Notas importantes de desarrollo
