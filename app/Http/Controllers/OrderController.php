@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return OrderResource::collection(Order::all()); //
     }
 
     /**
@@ -35,7 +26,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return (new OrderResource(Order::create($request->all())))->additional(["message"=>"Orden creado con éxito."]); //
     }
 
     /**
@@ -46,20 +37,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return new OrderResource($order);  //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -69,7 +48,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order->update($request->all());
+        return (new OrderResource($order))->additional(["message"=>"Orden actualizado con éxito."]); //
     }
 
     /**
@@ -80,6 +60,17 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return (new OrderResource($order))->additional(["message"=>"Orden eliminado con éxito."]);
+     //
+    }
+    public function listOnStockProducts(){
+        $orders = Order::where("stock", ">", 0)->get();
+        return OrderResource::collection($orders);
+    }
+
+    public function productByCategory($category_id){
+        $orders = Order::where("category_id" , $category_id)->get();
+        return OrderResource::collection($orders);
     }
 }

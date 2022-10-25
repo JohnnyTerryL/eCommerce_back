@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,6 +26,5 @@ Route::apiResource('categories', CategoryController::class);
 Route::apiResource('products', ProductController::class);
 Route::get('/products-on-stock', [ProductController::class, 'listOnStockProducts']);
 Route::get('/products-by-category/{category_id}', [ProductController::class, 'productByCategory']);
-
-
+Route::apiResource('orders', OrderController::class);
 Route::post('/save-cards', [UserController::class, 'saveCard']);
