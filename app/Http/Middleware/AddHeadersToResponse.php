@@ -10,7 +10,7 @@ class AddHeadersToResponse
     public function handle(Request $request, Closure $next): mixed
     {
         $response = $next($request);
-        $response->header('Accept ', 'application/json');
+        $response->header('Accept', 'application/json');
 
         return $response;
     }
