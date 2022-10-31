@@ -12,9 +12,11 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_id, $product_id)
     {
-        //
+        $cart = Carts::where("user_id" , $user_id)->get();
+        $cart = Carts::where("product_id" , $product_id)->get();
+        return CartsResource::collection($cart);
     }
 
     /**
