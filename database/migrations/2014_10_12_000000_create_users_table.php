@@ -20,12 +20,12 @@ return new class extends Migration
             $table->string('phone');
             $table->string('full_name');
             $table->string('password');
-            $table->string('address_line_1');
+            $table->string('address_line_1')->nullable();
             $table->string('address_line_2')->nullable();
-            $table->string('address_city');
-            $table->string('address_state');
-            $table->string('address_country');
-            $table->string('address_cp');
+            $table->string('address_city')->nullable();
+            $table->string('address_state')->nullable();
+            $table->string('address_country')->nullable();
+            $table->string('address_cp')->nullable();
             $table->boolean('enabled');
             $table->integer('jwt_id');
             $table->string('reset_password_token')->nullable();

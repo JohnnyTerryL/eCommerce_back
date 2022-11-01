@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,5 @@ Route::apiResource('products', ProductController::class);
 Route::get('/products-on-stock', [ProductController::class, 'listOnStockProducts']);
 Route::get('/products-by-category/{category_id}', [ProductController::class, 'productByCategory']);
 Route::apiResource('orders', OrderController::class);
-Route::post('/save-cards', [UserController::class, 'saveCard']);
-Route::post('/add-card', [CardController::class, 'show']);
-Route::delete('/destroy', [CardController::class, 'destroy']);
+Route::apiResource('cards', CardController::class);
+Route::get('/card_by_user/{user_id}', [CardController::class, 'cardByUser']);

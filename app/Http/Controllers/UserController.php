@@ -63,8 +63,4 @@ class UserController extends Controller
     {
         //
     }
-
-    public function saveCard(Request $request){
-        return (new CardResource(Card::create($request->all())))->additional(["message"=>"Tarjeta registrada exitosamente."]);
-    }
 }
