@@ -19,6 +19,11 @@ class CartController extends Controller
         return CartsResource::collection($cart);
     }
 
+    public function listProductsOnCar(){
+        $cart = Carts::where("product_id", $product_id)->get();
+        return CartsResource::collection($cart);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
