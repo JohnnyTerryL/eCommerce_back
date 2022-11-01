@@ -19,8 +19,9 @@ class CardResource extends JsonResource
     {
         return [
             'id'=> $this->id,
+            'card_name' => $this->card_name,
             'card_number' => $this->card_number,
-            'card_expiration_date' =>card_expiration_date,
+            'card_expiration_date' =>$this->card_expiration_date,
             'card_cvc' => $this-> card_cvc
         ];
     }
