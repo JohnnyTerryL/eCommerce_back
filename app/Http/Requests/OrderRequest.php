@@ -24,7 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'order_number' => 'bail|required|unique:orders,code',
+            'order_number' => 'bail|required|unique:orders,order_number',
             'product_id' => 'bail|required',
             'user_id' => 'bail|required',
             'quantity' => 'bail|required',

@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return (new OrderResource(Order::create($request->all())))->additional(["message"=>"Orden creado con éxito."]); //
+        return (new OrderResource(Order::create($request->all())))->additional(["message"=>"Orden creada con éxito."]); //
     }
 
     /**
@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         $order->update($request->all());
-        return (new OrderResource($order))->additional(["message"=>"Orden actualizado con éxito."]); //
+        return (new OrderResource($order))->additional(["message"=>"Orden actualizada con éxito."]); //
     }
 
     /**
@@ -61,16 +61,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
-        return (new OrderResource($order))->additional(["message"=>"Orden eliminado con éxito."]);
+        return (new OrderResource($order))->additional(["message"=>"Orden eliminada con éxito."]);
      //
-    }
-    public function listOnStockProducts(){
-        $orders = Order::where("stock", ">", 0)->get();
-        return OrderResource::collection($orders);
-    }
-
-    public function productByCategory($category_id){
-        $orders = Order::where("category_id" , $category_id)->get();
-        return OrderResource::collection($orders);
     }
 }
