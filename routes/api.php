@@ -28,3 +28,5 @@ Route::get('/products-on-stock', [ProductController::class, 'listOnStockProducts
 Route::get('/products-by-category/{category_id}', [ProductController::class, 'productByCategory']);
 Route::apiResource('orders', OrderController::class);
 Route::post('/save-cards', [UserController::class, 'saveCard']);
+Route::post('/add-card', [CardController::class, 'show']);
+Route::delete('/destroy', [CardController::class, 'destroy']);
