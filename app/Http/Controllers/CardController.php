@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CardResource;
 use App\Models\Card;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        return CardResource::collection(Card::all());
     }
 
     /**
@@ -35,7 +36,8 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return (new CardResource(Card::create($request->all())))->additional(["message"=>"Producto añadido al carrito con éxito."]);
+
     }
 
     /**
@@ -46,7 +48,7 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        //
+        return new CardResource($card);
     }
 
     /**
@@ -69,7 +71,8 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
-        //
+        $card->update($request->all());
+        return (new CardResource($card))->additional(["message"=>"Carrito actualizado con éxito."]);
     }
 
     /**
@@ -80,6 +83,7 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        //
+        $card->delete();
+        return (new CardResource($card))->additional(["message"=>"Producto eliminado del carrito con éxito."]);
     }
 }
